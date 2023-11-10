@@ -21,8 +21,8 @@ signal.signal(signal.SIGINT, sig_handler)
 
 password = "wuolahwuolah1234"
 invite_link= "https://www.wuolah.com/join-ur724737" #AQUÍ TU LINK DE INVITACIÓN
-driver_path='/home/imM0B/ejemplo' #AQUÍ EL PATH DE TU DRIVER DE SELENIUM
-userID="wuolahwuolita" #AQUÍ EL NOMBRE DE USUARIO PARA LAS CUENTAS DE WUOLAH CREADAS
+driver_path='/home/m0b/' #AQUÍ EL PATH DE TU DRIVER DE SELENIUM
+userID="wuolahwuolitah" #AQUÍ TU NOMBRE PARA CREAR LAS CUENTAS DE WUOLAH (CÁMBIALO)
 mail_url= "https://api.mail.tm"
 header={"Content-Type":"application/json"}
 options = Options() #Importa las opciones de selenium
@@ -41,7 +41,7 @@ while(True):
 		file.seek(0)
 		file.write(str(content_modified)) #Vuelve a castear el contenido a string, ya que file.write solo acepta cadenas
 		file.truncate() #Elimina el  enter
-	mail= f"{userID}{mailNumber}@hldrive.com"
+	mail= f"wuolahwuolah{mailNumber}@hldrive.com"
 	payload= {"address" : f"{mail}" , "password" : f"{password}"}
 	result = session.post(f"{mail_url}/accounts", json=payload, headers=header ,timeout=5)
 	if result.status_code == 201:
@@ -61,7 +61,7 @@ while(True):
 		sig_handler(None, None)
 
 	#CREAR CUENTA WUOLAH
-	options.headless = True ; service = Service(driver_path) ; driver = webdriver.Firefox(service=service) ; driver.get(invite_link)
+	options.headless = False ; service = Service(driver_path) ; driver = webdriver.Firefox(service=service,options=options) ; driver.get(invite_link)
 	wait = WebDriverWait(driver, 1000) ; button = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "css-47sehv"))); button.click() #Cookies
 	wait = WebDriverWait(driver, 1000) ; button = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "css-ai84mh"))) ; button.click() #Continue
 	wait = WebDriverWait(driver, 1000) ; button = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "css-e0l6jx"))) ; button.click() #Mail
@@ -80,8 +80,9 @@ while(True):
 	result = session.get(f"{mail_url}{url_source}",headers={"Content-Type":"application/json", "Authorization": f"Bearer {token}"},timeout=5)
 	result = re.sub(r'=', '', result.text) ; result= re.findall(r'href3D"(.*?)"', result, re.DOTALL)
 	url_verification = result[2].replace("\n", "").replace("\r", "") # Elimina saltos de línea y retornos de carro 
-	options.headless = True ;service = Service(driver_path) ; driver = webdriver.Firefox(service=service) ; driver.get(url_verification) 
+	options.headless = True ; service = Service(driver_path) ; driver = webdriver.Firefox(service=service,options=options) ; driver.get(url_verification) 
 	driver.quit() #Verifica Cuenta
 	print(Fore.YELLOW + "[4] Cuenta verificada")
+	time.sleep(1)
 	coins=coins+3
 
