@@ -20,10 +20,10 @@ signal.signal(signal.SIGINT, sig_handler)
 #Variables Globales
 
 password = "wuolahwuolah1234"
-invite_link= "https://www.wuolah.com/join-ur724737"
+invite_link= "https://www.wuolah.com/join-ur724737" #AQUÍ TU LINK DE INVITACIÓN
+driver_path='/home/imM0B/ejemplo' #AQUÍ EL PATH DE TU DRIVER DE SELENIUM
 mail_url= "https://api.mail.tm"
 header={"Content-Type":"application/json"}
-driver_path='/home/m0b/Desktop/Scripting/Python/wuolahMiner/geckodriver'
 options = Options() #Importa las opciones de selenium
 coins = 0
 
