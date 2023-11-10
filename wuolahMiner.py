@@ -22,7 +22,7 @@ signal.signal(signal.SIGINT, sig_handler)
 password = "wuolahwuolah1234"
 invite_link= "https://www.wuolah.com/join-ur724737" #AQUÍ TU LINK DE INVITACIÓN
 driver_path='/home/m0b/' #AQUÍ EL PATH DE TU DRIVER DE SELENIUM
-userID="wuolahwuolitah" #AQUÍ TU NOMBRE PARA CREAR LAS CUENTAS DE WUOLAH (CÁMBIALO)
+userID="wuolahwuolita" #AQUÍ TU NOMBRE PARA CREAR LAS CUENTAS DE WUOLAH (<=13 caracteres)
 mail_url= "https://api.mail.tm"
 header={"Content-Type":"application/json"}
 options = Options() #Importa las opciones de selenium
