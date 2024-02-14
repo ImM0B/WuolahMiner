@@ -21,9 +21,10 @@ signal.signal(signal.SIGINT, sig_handler)
 
 password = "wuolahwuolah1234"
 invite_link= "https://www.wuolah.com/join-ur724737" #AQUÍ TU LINK DE INVITACIÓN
-driver_path='/home/m0b/' #AQUÍ EL PATH DE TU DRIVER DE SELENIUM
-userID="wuolahwuolita" #AQUÍ TU NOMBRE PARA CREAR LAS CUENTAS DE WUOLAH (<=13 caracteres)
+driver_path='/home/m0b/WuolahMiner/geckodriver' #AQUÍ EL PATH DE TU DRIVER DE SELENIUM
+userID="coinsfree" #AQUÍ TU NOMBRE PARA CREAR LAS CUENTAS DE WUOLAH (<=13 caracteres)
 mail_url= "https://api.mail.tm"
+mail_domain="wireconnected" #ESTE DOMINIO LO SUELEN CAMBIAR, en mail.tm sale el actual
 header={"Content-Type":"application/json"}
 options = Options() #Importa las opciones de selenium
 coins = 0
@@ -41,7 +42,7 @@ while(True):
 		file.seek(0)
 		file.write(str(content_modified)) #Vuelve a castear el contenido a string, ya que file.write solo acepta cadenas
 		file.truncate() #Elimina el  enter
-	mail= f"{userID}{mailNumber}@hldrive.com"
+	mail= f"{userID}{mailNumber}@{mail_domain}.com"
 	payload= {"address" : f"{mail}" , "password" : f"{password}"}
 	result = session.post(f"{mail_url}/accounts", json=payload, headers=header ,timeout=5)
 	if result.status_code == 201:
