@@ -63,7 +63,7 @@ while(True):
 
 	#CREAR CUENTA WUOLAH
 	options.headless = False ; service = Service(driver_path) ; driver = webdriver.Firefox(service=service,options=options) ; driver.get(invite_link)
-	wait = WebDriverWait(driver, 1000) ; button = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "css-47sehv"))); button.click() #Cookies
+	wait = WebDriverWait(driver, 1000) ; button = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "css-1knxl3g"))); button.click() #Cookies
 	wait = WebDriverWait(driver, 1000) ; button = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "css-ai84mh"))) ; button.click() #Continue
 	wait = WebDriverWait(driver, 1000) ; button = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "css-e0l6jx"))) ; button.click() #Mail
 	wait = WebDriverWait(driver, 1000) ; field = wait.until(EC.presence_of_element_located((By.ID, "email"))) ; field.send_keys(f"{mail}"); #Escribe Mail
@@ -83,6 +83,7 @@ while(True):
 	url_verification = result[2].replace("\n", "").replace("\r", "") # Elimina saltos de línea y retornos de carro 
 	options.headless = True ; service = Service(driver_path) ; driver = webdriver.Firefox(service=service,options=options) ; driver.get(url_verification) 
 	driver.quit() #Verifica Cuenta
+	time.sleep(1)
 	print(Fore.YELLOW + "[4] Cuenta verificada")
 	time.sleep(1)
 	coins=coins+3
