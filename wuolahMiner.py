@@ -21,8 +21,9 @@ signal.signal(signal.SIGINT, sig_handler)
 
 password = "wuolahwuolah1234"
 invite_link= "https://www.wuolah.com/join-ur724737" #AQUÍ TU LINK DE INVITACIÓN
-driver_path='/home/m0b/WuolahMiner/geckodriver' #AQUÍ EL PATH DE TU DRIVER DE SELENIUM
-userID="coinsfree" #AQUÍ TU NOMBRE PARA CREAR LAS CUENTAS DE WUOLAH (<=13 caracteres)
+options.binary_location = r'C:\Program Files\Mozilla Firefox\firefox.exe' #AQUÍ EL PATH DE FIREFOX
+driver_path='/home/m0b/WuolahMiner/geckodriver' #AQUÍ EL PATH DE TU DRIVER DE SELENIUM (Compatible con la versión de firefox)
+userID="coinsfree" #AQUÍ TU NOMBRE PARA CREAR LAS CUENTAS DE WUOLAH (<=13 caracteres) (CÁMBIALO)
 mail_url= "https://api.mail.tm"
 mail_domain="wireconnected" #ESTE DOMINIO LO SUELEN CAMBIAR, en mail.tm sale el actual
 header={"Content-Type":"application/json"}
@@ -71,7 +72,7 @@ while(True):
 	#Ahora Resolver el captcha
 	wait = WebDriverWait(driver, 1000) ; button = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "css-17t3rxq"))) ; button.click() #Spain
 	wait = WebDriverWait(driver, 1000) ; button = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "css-160nu5g"))) ; button.click() #Aceptar
-	time.sleep(5);driver.quit();time.sleep(5)
+	time.sleep(5);driver.quit()
 	print(Fore.YELLOW + "[3] Cuenta creada")
 
 	#VERIFICACIÓN
@@ -81,10 +82,9 @@ while(True):
 	result = session.get(f"{mail_url}{url_source}",headers={"Content-Type":"application/json", "Authorization": f"Bearer {token}"},timeout=5)
 	result = re.sub(r'=', '', result.text) ; result= re.findall(r'href3D"(.*?)"', result, re.DOTALL)
 	url_verification = result[2].replace("\n", "").replace("\r", "") # Elimina saltos de línea y retornos de carro 
-	options.headless = True ; service = Service(driver_path) ; driver = webdriver.Firefox(service=service,options=options) ; driver.get(url_verification) 
+	options.headless = True ; service = Service(driver_path) ; driver = webdriver.Firefox(service=service,options=options) ; driver.get(url_verification)
+	time.sleep(2)
 	driver.quit() #Verifica Cuenta
-	time.sleep(1)
 	print(Fore.YELLOW + "[4] Cuenta verificada")
-	time.sleep(1)
 	coins=coins+3
 
