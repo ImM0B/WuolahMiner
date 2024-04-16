@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import requests, sys, signal, time, colorama,json, selenium,re,os
+import requests, sys, signal, time, colorama,json, selenium,re,os,string,random
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.options import Options
 from selenium import webdriver
@@ -18,26 +18,29 @@ def sig_handler(sig, frame):
 signal.signal(signal.SIGINT, sig_handler)
 
 #Variables Globales
-
-password = "wuolahwuolah1234"
-invite_link= "https://www.wuolah.com/join-ur724737" #AQUÍ TU LINK DE INVITACIÓN
-options.binary_location = r'C:\Program Files\Mozilla Firefox\firefox.exe' #AQUÍ EL PATH DE FIREFOX
-driver_path='/home/m0b/WuolahMiner/geckodriver' #AQUÍ EL PATH DE TU DRIVER DE SELENIUM (Compatible con la versión de firefox)
-userID="coinsfree" #AQUÍ TU NOMBRE PARA CREAR LAS CUENTAS DE WUOLAH (<=13 caracteres) (CÁMBIALO)
 mail_url= "https://api.mail.tm"
-mail_domain="wireconnected" #ESTE DOMINIO LO SUELEN CAMBIAR, en mail.tm sale el actual
 header={"Content-Type":"application/json"}
 options = Options() #Importa las opciones de selenium
 coins = 0
 
+#Variables a modificar
+password = "wuolahwuolah1234" #No es necesario modificar
+invite_link= "https://www.wuolah.com/join-ur724737" #AQUÍ TU LINK DE INVITACIÓN
+options.binary_location = r'C:\Program Files\Mozilla Firefox\firefox.exe' #AQUÍ EL PATH DE FIREFOX
+driver_path=r'/home/m0b/WuolahMiner/geckodriver' #AQUÍ EL PATH DE TU DRIVER DE SELENIUM (Compatible con la versión de firefox)
+
+#MAIN
+session = requests.Session()
+result = session.get(f"{mail_url}/domains") #Sacamos dominio de correo
+result_dict= json.loads(result.text)
+mail_domain = result_dict['hydra:member'][0]['domain']
+userID = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(10)) #Creamos nombre random para usar en las cuentas
 while(True):
-	#MAIN
 	os.system('clear')
 	print(Fore.GREEN + f"\n[٭] WuolahCoins minadas esta sesión : {coins} \n")
-	session = requests.Session()
 
 	#CREAR CUENTA MAIL
-	with open('mailNumber.txt','r+') as file :
+	with open('mailNumber.txt','r+') as file : #Extraemos número de correo del archivo
 		mailNumber=file.read()
 		content_modified=int(mailNumber) + 1 #Castea el contenido como un entero
 		file.seek(0)
