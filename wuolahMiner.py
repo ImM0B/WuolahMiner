@@ -46,7 +46,7 @@ while(True):
 		file.seek(0)
 		file.write(str(content_modified)) #Vuelve a castear el contenido a string, ya que file.write solo acepta cadenas
 		file.truncate() #Elimina el  enter
-	mail= f"{userID}{mailNumber}@{mail_domain}.com"
+	mail= f"{userID}{mailNumber}@{mail_domain}"
 	payload= {"address" : f"{mail}" , "password" : f"{password}"}
 	result = session.post(f"{mail_url}/accounts", json=payload, headers=header ,timeout=5)
 	if result.status_code == 201:
