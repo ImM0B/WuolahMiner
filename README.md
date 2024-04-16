@@ -33,8 +33,8 @@ Personalmente yo uso la versión 115.6.0esr de firefox con la versión 0.34.0 de
 3. Configura las variables necesarias en el script `wuolah_miner.py`:
 
    - `invite_link`: Enlace de invitación de tu cuenta de Wuolah.
-   - `options.binary_location`: Ruta al binario de firefox | `Ejemplo Windows` : C:\Program Files\Mozilla Firefox\firefox.exe ; `Ejemplo Linux`: /usr/bin/firefox
-   - `driver_path`: Ruta al WebDriver de Selenium para Firefox. | `Ejemplo Windows` : C:\Users\m0b\geckodriver.exe ; `Ejemplo Linux`: /home/m0b/geckodriver
+   - `options.binary_location`: Ruta al binario de firefox | *Ejemplo Windows* : C:\Program Files\Mozilla Firefox\firefox.exe ; *Ejemplo Linux*: /usr/bin/firefox
+   - `driver_path`: Ruta al WebDriver de Selenium para Firefox. | *Ejemplo Windows* : C:\Users\m0b\geckodriver.exe ; *Ejemplo Linux*: /home/m0b/geckodriver
    - `userID`: Nombre base para las cuentas de correo desechables. Importante cambiarlo.
    
 4. Ejecuta el script:
