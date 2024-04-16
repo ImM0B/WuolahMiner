@@ -34,18 +34,11 @@ session = requests.Session()
 result = session.get(f"{mail_url}/domains") #Sacamos dominio de correo
 result_dict= json.loads(result.text)
 mail_domain = result_dict['hydra:member'][0]['domain']
-userID = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(10)) #Creamos nombre random para usar en las cuentas
 while(True):
-	os.system('clear')
-	print(Fore.GREEN + f"\n[٭] WuolahCoins minadas esta sesión : {coins} \n")
-
+	os.system('cls;clear')
+	print(Fore.GREEN + f"\n[+] WuolahCoins minadas esta sesión : {coins} \n")
+	userID = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(12)) #Creamos nombre random para usar en las cuentas
 	#CREAR CUENTA MAIL
-	with open('mailNumber.txt','r+') as file : #Extraemos número de correo del archivo
-		mailNumber=file.read()
-		content_modified=int(mailNumber) + 1 #Castea el contenido como un entero
-		file.seek(0)
-		file.write(str(content_modified)) #Vuelve a castear el contenido a string, ya que file.write solo acepta cadenas
-		file.truncate() #Elimina el  enter
 	mail= f"{userID}{mailNumber}@{mail_domain}"
 	payload= {"address" : f"{mail}" , "password" : f"{password}"}
 	result = session.post(f"{mail_url}/accounts", json=payload, headers=header ,timeout=5)
