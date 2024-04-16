@@ -40,7 +40,7 @@ Personalmente yo uso la versión 115.6.0esr de firefox con la versión 0.34.0 de
 4. Ejecuta el script:
 
    ```bash
-   python wuolah_miner.py
+   python wuolahMiner.py
    ```
 
 ## Notas
